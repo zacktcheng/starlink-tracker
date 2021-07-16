@@ -8,7 +8,7 @@ import {
   Marker
 } from "react-simple-maps";
 import { Button, InputNumber, Progress } from "antd";
-import { NY20_API_KEY, NY20_RELATIVE_URL } from "../constants";
+import { NY20_RELATIVE_URL } from "../constants";
 
 export const POSITION_API_RELATIVE_URL = `${NY20_RELATIVE_URL}/positions`;
 
@@ -49,7 +49,7 @@ const WorldMap = ({
 
     return selectedSatellites.map((sat) => {
       const id = sat.satid;
-      return fetch(`${POSITION_API_RELATIVE_URL}/${id}/${latitude}/${longitude}/${altitude}/${duration * 60}&apiKey=${NY20_API_KEY}`)
+      return fetch(`${POSITION_API_RELATIVE_URL}/${id}/${latitude}/${longitude}/${altitude}/${duration * 60}&apiKey=${process.env.REACT_APP_NY20_API_KEY}`)
         .then(response => response.json());
     })
   }
