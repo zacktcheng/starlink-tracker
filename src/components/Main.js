@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Col, Row } from "antd";
 import ObserverInfo from "./ObserverInfo";
-import { SAT_CATEGORY, NY20_RELATIVE_URL } from "../constants";
+import { SAT_CATEGORY, HEROKU_N2YO_URL } from "../constants";
 import SatelliteList from "./SatelliteList";
 import WorldMap from "./WorldMap";
 
-export const ABOVE_API_RELATIVE_URL = `${NY20_RELATIVE_URL}/above`;
+export const HEROKU_N2YO_ABOVE_API_URL = `${HEROKU_N2YO_URL}/above`;
 
 const Main = () => {
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ const Main = () => {
     const { longitude, latitude, altitude, radius } = nextObserverInfo;
 
     setLoading(true);
-    fetch(`${ABOVE_API_RELATIVE_URL}/${latitude}/${longitude}/${altitude}/${radius}/${SAT_CATEGORY}/&apiKey=${process.env.REACT_APP_NY20_API_KEY}`)
+    fetch(`${HEROKU_N2YO_ABOVE_API_URL}/${latitude}/${longitude}/${altitude}/${radius}/${SAT_CATEGORY}/&apiKey=${process.env.REACT_APP_NY20_API_KEY}`)
       .then(response => response.json())
       .then(data => {
         setSatList(data.above.map((satellite) => {
@@ -28,9 +28,11 @@ const Main = () => {
           }
         }));
         setLoading(false);
+        console.log(data);
       })
       .catch(() => {
         setLoading(false);
+        console.log('catch failure');
       }
     );
   }

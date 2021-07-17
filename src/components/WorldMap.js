@@ -8,9 +8,9 @@ import {
   Marker
 } from "react-simple-maps";
 import { Button, InputNumber, Progress } from "antd";
-import { NY20_RELATIVE_URL } from "../constants";
+import { HEROKU_N2YO_URL } from "../constants";
 
-export const POSITION_API_RELATIVE_URL = `${NY20_RELATIVE_URL}/positions`;
+export const POSITION_API_URL = `${HEROKU_N2YO_URL}/positions`;
 
 const progressStatus = {
   Idle: 'Idle',
@@ -49,7 +49,7 @@ const WorldMap = ({
 
     return selectedSatellites.map((sat) => {
       const id = sat.satid;
-      return fetch(`${POSITION_API_RELATIVE_URL}/${id}/${latitude}/${longitude}/${altitude}/${duration * 60}&apiKey=${process.env.REACT_APP_NY20_API_KEY}`)
+      return fetch(`${POSITION_API_URL}/${id}/${latitude}/${longitude}/${altitude}/${duration * 60}&apiKey=${process.env.REACT_APP_NY20_API_KEY}`)
         .then(response => response.json());
     })
   }
