@@ -1,4 +1,3 @@
-.observer-info-container {
-  margin: 10px;
-  border: 1px solid #ccc;
+.form-buttons {
+  display: flex;
 }

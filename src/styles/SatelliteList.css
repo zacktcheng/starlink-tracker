@@ -1,10 +1,11 @@
-.satellite-list-container {
-  margin: 10px;
-  border: 1px solid #ccc;
+.sat-list {
+  max-height: 200px;
+  overflow-y: auto;
 }
 
-.sat-list {
-  margin: 20px;
-  height: 335px;
-  overflow-y: auto;
+.item-subTitle {
+  display: inline-block;
+  margin-left: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 400;
 }

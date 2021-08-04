@@ -2,38 +2,162 @@
 @import './styles/ObserverInfo.css';
 @import './styles/SatelliteList.css';
 @import './styles/WorldMap.css';
+@import './App.css';
 
-.App-logo {
-  height: 60px;
-  padding-left: 30px;
+* {
+  border-color: #4da8da !important;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: bold;
+body {
+  background-color: #203647;
 }
 
-.ant-layout-header {
-  background: #7dbcea;
-  display: flex;
-  align-items: center;
-  height: 70px;
-  width: 100%;
-  color: #1f6099;
-  box-shadow: rgb(220, 220, 220) 0 2px 10px;
+.ant-input-number {
+  width: 60px !important;
+  border-radius: 10px !important;
+  background: #203647;
 }
 
-.ant-layout-footer {
-  position: absolute;
-  text-align: center;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background: #7dbcea;
-  color: #fff;
+.ant-input-number-handler-wrap {
+  background: none;
 }
 
-.ant-layout-content {
-  background:#fff;
-  min-height: 120px;
+.ant-form-item {
+  margin-bottom: 0.75rem !important;
+  margin-right: 1rem;
+}
+
+.ant-select-selector {
+  border-radius: 10px !important;
+}
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background: none;
+}
+
+.ant-list-empty-text {
+  padding: 10px;
+}
+
+.ant-empty-normal {
+  margin: 0;
+}
+
+.ant-progress-inner {
+  background: #376F91;
+}
+
+.ant-checkbox-inner {
+  background: #4da8da;
+}
+
+.ant-btn-primary {
+  background: #4da8da;
+}
+
+.ant-btn.ant-btn-primary.ant-btn-round {
+  background: #376F91;
+  color: #eefbfb;
+}
+
+.ant-btn.ant-btn-primary.ant-btn-round:hover {
+  background: #4da8da;
+  color: #eefbfb;
+}
+
+.ant-form-item-label > label {
+  color: #4da8da;
+}
+
+.ant-input-number-input {
+  color: #eefbfb;
+}
+
+.ant-select {
+  color: #eefbfb;
+}
+
+.ant-select-arrow {
+  color: #eefbfb;
+}
+
+.ant-empty-normal {
+  color: #eefbfb;
+}
+
+.ant-list-item-meta-title {
+  color: #eefbfb;
+}
+
+.ant-progress-text {
+  color: #376F91;
+}
+
+.ant-progress-status-success .ant-progress-text {
+  color: #4da8da;
+}
+
+section {
+  max-width: 1000px;
+  margin: 5px auto;
+  padding: 10px;
+  padding-bottom: 0;
+  border: 1px solid #4da8da;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+  h4.ant-typography { 
+    text-align: start;
+    font-size: medium;
+  }
+
+  h5.ant-typography {
+    font-size: small;
+  }
+
+  .ant-list-item-meta-title {
+    font-size: small;
+  }
+
+  #sat-logo {
+    width: 40px;
+    height: 40px;
+    margin: 0.1rem;
+  }
+
+  #earth-logo {
+    display: none;
+  }
+
+  .ant-layout-header {
+    justify-content: normal !important;
+    padding-left: 5px;
+    height: auto;
+  }
+
+  .ant-form-inline {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .ant-form-item {
+    min-width: 70px;
+  }
+
+  .ant-form-item-label {
+    padding-bottom: 2px !important;
+  }
+
+  .form-buttons {
+    overflow-x: auto;
+  }
+
+  .item-subTitle {
+    display: none;
+  }
+
+  section {
+    margin: 5px;
+  }
 }

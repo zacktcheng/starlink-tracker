@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "antd/lib/typography/Title";
 import { List, Checkbox, Avatar } from "antd";
-import satelliteImage from '../images/satellite.svg';
+import satelliteImage from '../images/satellite-1.svg';
 
 const SatelliteList = ({
   satList,
@@ -28,27 +28,26 @@ const SatelliteList = ({
   }
 
   return (
-    <div className="satellite-list-container">
-      <Title level={5}>Nearby Satellites ({satList? satList.length : 0})</Title>
-      <p>Select the satellites you wanna track on the world map at the right side</p>
+    <section>
+      <Title level={5} style={{ color: '#eefbfb' }}>Nearby Satellites ({satList? satList.length : 0})</Title>
       <hr/>
       <List 
         className="sat-list"
         itemLayout="horizontal"
+        size="small"
         dataSource={satList}
         loading={loading}
         renderItem={ item => (
             <List.Item 
               actions={[<Checkbox onChange={(e) => onSelectionChange(e.target.checked, item)} checked={item.selected} disabled={disabled} />]}>
                 <List.Item.Meta
-                  avatar={<Avatar src={satelliteImage} size="large" alt="satellite"/>}
-                  title={<p>{item.satname}</p>}
-                  description={`Launch Date: ${item.launchDate}`}
+                  avatar={<Avatar src={satelliteImage} size="default" alt="satellite" style={{ borderRadius: 50, border: '2px solid' }}/>}
+                  title={<><span>{item.satname}</span><span className="item-subTitle">{`Launch Date: ${item.launchDate}`}</span></>}
                 />
             </List.Item>
         )}
       />
-    </div>
+    </section>
   )
 }
 

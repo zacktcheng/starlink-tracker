@@ -1,85 +1,85 @@
 import Title from "antd/lib/typography/Title";
 import React from "react";
-import { InputNumber, Form, Button } from "antd";
+import { InputNumber, Select, Form, Button } from "antd";
 
 const ObserverInfo = (props) => {
   const onFormFinish = (observerInfo) => {
     props.findSatellitesOnClick(observerInfo);
   }
 
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 24 },
-  };
-
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-  };
+  const { Option } = Select;
 
   return (
-    <div className="observer-info-container">
-      <Title level={5}>Observer Info</Title>
+    <section>
+      <Title level={5} style={{ color: '#eefbfb' }}>Observer Info</Title>
+      <hr/>
       <Form
-        {...layout}
         initialValues={{ 
-          longitude: "0",
-          latitude: "0",
-          altitude: "0",
-          radius: "0",
+          latitude: "0", longitude: "0", altitude: "0", radius: "45", category: "52"
         }}
+        size="small"
         onFinish={onFormFinish}
       >
-        <Form.Item
-          label="Longitude"
-          name="longitude"
-          rules={[{ 
-            required: true,
-            message: 'Please enter a valid longitude!',
-          }]}
-        >
-          <InputNumber min={-180} max={180} style={{ width: "40%" }} disabled={props.disabled} />
-        </Form.Item>
-
-        <Form.Item
-          label="Latitude"
-          name="latitude"
-          rules={[{ 
-            required: true,
-            message: 'Please enter a valid latitude!',
-          }]}
-        >
-          <InputNumber min={-90} max={90} style={{ width: "40%" }} disabled={props.disabled} />
-        </Form.Item>
-
-        <Form.Item
-          label="Altitude(meters)"
-          name="altitude"
-          rules={[{ 
-            required: true,
-            message: 'Please enter a valid altitude!',
-          }]}
-        >
-          <InputNumber min={-413} max={8850} style={{ width: "40%" }} disabled={props.disabled} />
-        </Form.Item>
-
-        <Form.Item
-          label="Radius"
-          name="radius"
-          rules={[{ 
-            required: true,
-            message: 'Please enter a valid radius!',
-          }]}
-        >
-          <InputNumber min={0} max={90} style={{ width: "40%" }} disabled={props.disabled} />
-        </Form.Item>
-
-        <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit" disabled={props.loading || props.disabled}>
-            Find nearby satellites
+        <div className="form-buttons">
+          <Form.Item
+            label="Latitude"
+            name="latitude"
+          >
+            <InputNumber size="small" min={-90} max={90} disabled={props.disabled} />
+          </Form.Item>
+          <Form.Item
+            label="Longitude"
+            name="longitude"
+          >
+            <InputNumber size="small" min={-180} max={180} disabled={props.disabled} />
+          </Form.Item>
+          <Form.Item
+            label="Altitude(m)"
+            name="altitude"
+          >
+            <InputNumber size="small" min={-413} max={8850} disabled={props.disabled} />
+          </Form.Item>
+          <Form.Item
+            label="Range(&#952;)"
+            name="radius"
+          >
+            <InputNumber size="small" min={45} max={90} disabled={props.disabled} />
+          </Form.Item>
+          <Form.Item
+            label="Category"
+            name="category"
+          >
+            <Select 
+              style={{ width: 200 }}
+              defaultValue="2"
+              size="small"
+            >
+              <Option value="52">Starlink</Option>
+              <Option value="2">The Intl. Space Station</Option>
+              <Option value="15">Iridium</Option>
+              <Option value="5">GOES</Option>
+              <Option value="22">Galileo</Option>
+              <Option value="30">Military</Option>
+              <Option value="26">Space & Earth Science</Option>
+              <Option value="34">TV</Option>
+              <Option value="18">Amateur radio</Option>
+              <Option value="35">Beidou Navigation System</Option>
+            </Select>
+          </Form.Item>
+        </div>
+        <Form.Item /*{...tailLayout}*/>
+          <Button 
+            type="primary" 
+            size="default" 
+            shape="round" 
+            htmlType="submit" 
+            disabled={props.loading || props.disabled}
+          >
+            Search nearby satellites
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </section>
   )
 }
 

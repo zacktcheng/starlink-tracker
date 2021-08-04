@@ -1,25 +1,15 @@
 import React, { useRef, useState } from "react";
-import {
-  Geographies,
-  Geography,
-  Graticule,
-  Sphere,
-  ComposableMap,
-  Marker
-} from "react-simple-maps";
+import { Geographies, Geography, Graticule, Sphere, ComposableMap, Marker } from "react-simple-maps";
 import { Button, InputNumber, Progress } from "antd";
-import { HEROKU_N2YO_URL } from "../constants";
-
-export const POSITION_API_URL = `${HEROKU_N2YO_URL}/positions`;
+import { NODE_JS_FOR_N2YO_URL } from "../constants";
 
 const progressStatus = {
   Idle: 'Idle',
   Tracking: 'Tracking...',
-  Complete: 'Complete'
+  Completed: 'Completed'
 }
 
-const geoUrl =
-  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
+const geoUrl = "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
 const WorldMap = ({
   selectedSatellites,
@@ -49,7 +39,7 @@ const WorldMap = ({
 
     return selectedSatellites.map((sat) => {
       const id = sat.satid;
-      return fetch(`${POSITION_API_URL}/${id}/${latitude}/${longitude}/${altitude}/${duration * 60}&apiKey=${process.env.REACT_APP_NY20_API_KEY}`)
+      return fetch(`${NODE_JS_FOR_N2YO_URL}/n2yo?api=positions&id=${id}&lat=${latitude}&lon=${longitude}&alt=${altitude}&dur=${60 * duration}&apikey=${process.env.REACT_APP_NY20_API_KEY}`)
         .then(response => response.json());
     })
   }
@@ -77,7 +67,7 @@ const WorldMap = ({
       setProgressPercentage((index / end) * 100);
 
       if (index >= end) {
-        setProgressText(progressStatus.Complete);
+        setProgressText(progressStatus.Completed);
         onTracking(false);
         clearInterval(timerIdContainer.current);
         timerIdContainer.current = undefined;
@@ -96,58 +86,72 @@ const WorldMap = ({
 
     Promise.all(fetchPositions()).then((data) => {
       startTracking(data);
-    }).catch(() => {
-      // TO DO: add some fallback UI handler here
-    });
+    }).catch(() => { /*TO DO: add some fallback UI handler here*/ });
   }
 
   return (
-    <>
-      <div className="track-info-panel">
+    <section>
+      <div className="trackInfo">
         <Button 
           type="primary"
           onClick={trackOnClick}
           disabled={selectedSatellites.length === 0 || disabled}
+          shape="round"
         >
           Track selected satellites
         </Button>
-        <span style={{ marginLeft: "10px", marginRight: "10px" }}>for</span>
+        <span className="track-text">for</span>
         <InputNumber 
           min={1}
-          max={50}
+          max={60}
           defaultValue={1}
           onChange={(value) => setDuration(value)}
           disabled={disabled}
+          size="small"
         />
-        <span style={{ marginLeft: "10px", marginRight: "30px" }}>minutes</span>
+        <span className="track-text">minutes</span>
         <Progress 
-          style={{ width: "500px", marginRight: "150px" }}
+          style={{ width: "50%", marginRight: 10 }}
           percent={progressPercentage} 
-          format={() => progressText} 
+          format={() => progressText}
+          strokeColor={{
+            '0%': '#4da8da',
+            '100%': '#4da8da'
+          }} 
         />
+        <br/>
         {disabled &&
           <Button 
             type="primary"
             onClick={abortOnClick}
+            shape="round"
+            style={{ margin: "10px 0"}}
           >
             Abort
           </Button>
         }
       </div>
-      <div className="time-stamp-container" style={{textAlign: "center"}}>
-        <b>{currentTimestamp}</b>
-      </div>
-      <ComposableMap projectionConfig={{ scale: 137 }} style={{ height: "700px", marginLeft: "100px" }}>
-        <Graticule stroke="#DDD" strokeWidth={0.5} />
-        <Sphere stroke="#DDD" strokeWidth={0.5} />
+      <p className="time-stamp">{currentTimestamp}</p>
+      <ComposableMap 
+        projectionConfig={{
+          scale: 130,
+          rotation: [-11, 0, 0],
+        }}
+        width={800}
+        height={400}
+        style={{ width: "100%", height: "auto" }} 
+      >
+        <Graticule stroke="#376F91" />
+        <Sphere stroke="#376F91" />
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map(geo => (
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill="#DDD"
-                stroke="#FFF"
+                fill="#76BDE3"
+                stroke="#4DA8DA"
+                strokeWidth={0.25}
               />
             ))
           }
@@ -155,13 +159,16 @@ const WorldMap = ({
         {
           markersInfo.map((mark) => 
             <Marker coordinates={[mark.lon, mark.lat]}>
-              <circle r={4} fill="#F53" />
-              <text>{mark.name}</text>
+              <rect x="-10" y="-.75" width="20" height="1.5" fill="#eefbfb"/>
+              <rect x="-.75" y="-10" width="1.5" height="20" fill="#eefbfb"/>
+              <circle r="3" fill="#eefbfb"/>
+              <circle r="6" stroke-width="1.5" fill="transparent" stroke="#eefbfb"/>
+              <text x="15" y="3" fill="#eefbfb" style={{ fontSize: "0.5rem", fontWeight: "bold", letterSpacing: "0.1rem"}}>{mark.name}</text>
             </Marker>
           )
         }
       </ComposableMap>
-    </>
+    </section>
   )
 }
 
