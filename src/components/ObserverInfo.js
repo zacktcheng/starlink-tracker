@@ -11,7 +11,7 @@ const ObserverInfo = (props) => {
 
   return (
     <section>
-      <Title level={5} style={{ color: '#eefbfb' }}>Observer Info</Title>
+      <Title level={5} style={{ color: '#eefbfb' }}>Observer Info &#129122;</Title>
       <hr/>
       <Form
         initialValues={{ 

@@ -29,7 +29,7 @@ const SatelliteList = ({
 
   return (
     <section>
-      <Title level={5} style={{ color: '#eefbfb' }}>Nearby Satellites ({satList? satList.length : 0})</Title>
+      <Title level={5} style={{ color: '#eefbfb' }}>Nearby Satellites ({satList? satList.length : 0}) &#129123;</Title>
       <hr/>
       <List 
         className="sat-list"

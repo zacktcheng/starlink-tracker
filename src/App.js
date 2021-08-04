@@ -19,9 +19,9 @@ function App() {
           justifyContent: 'center'
         }}
       >
-        <img id="sat-logo" className="header-logo" src={satelliteLogo} alt="logo"></img>
-        <Title level={4} style={{ textAlign: 'center', color: '#eefbfb', position: 'relative', top: '0.25rem' }}>TRACK SATELLITES FOR "X" MINUTES</Title>
-        <img id="earth-logo" className="header-logo" src={planetEarthLogo} alt="logo"></img>
+        <img className="header-logo" src={satelliteLogo} alt="logo"></img>
+        <Title level={4} style={{ textAlign: 'center', color: '#eefbfb', position: 'relative', top: '0.25rem' }}>Track Satellites for &#119987; Minutes</Title>
+        <img id="header-logo-right" className="header-logo" src={satelliteLogo} alt="logo"></img>
       </Header>
       <Content>
         <Main />
@@ -34,7 +34,7 @@ function App() {
           background: 'none'
         }}
       >
-        <p className="gmail"><i class="fa fa-envelope"></i> zacktcheng@gmail.com</p>
+        <span className="gmail"><i class="fa fa-envelope"></i> zacktcheng@gmail.com</span>
         <a href="https://github.com/zacktcheng" target="_blank" rel="noreferrer"><i class="fa fa-github"></i></a>
         <a href="https://www.linkedin.com/in/zack-cheng-3684506b" target="_blank" rel="noreferrer"><i class="fa fa-linkedin"></i></a>
         <a href="https://www.facebook.com" target="_blank" rel="noreferrer"><i class="fa fa-facebook"></i></a>

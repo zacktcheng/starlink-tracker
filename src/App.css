@@ -2,11 +2,25 @@
   height: 60px;
   width: 60px;
   margin: 0 0.5rem;
+  animation-name: header-logo-spin;
+  animation-duration: 50000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-origin: 50%;
+}
+
+@keyframes header-logo-spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(-360deg);
+  }
 }
 
 a { margin: 0 0.5rem; }
 
-.gmail { color: #4da8da }
+.gmail { color: #4da8da; }
 
 i { color: #4da8da; }
 

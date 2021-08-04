@@ -82,7 +82,7 @@ body {
 }
 
 .ant-empty-normal {
-  color: #eefbfb;
+  color: #4da8da;
 }
 
 .ant-list-item-meta-title {
@@ -94,6 +94,28 @@ body {
 }
 
 .ant-progress-status-success .ant-progress-text {
+  color: #4da8da;
+}
+
+.ant-layout-header { padding: 0; }
+
+.ant-layout-footer {
+  padding: 0;
+  padding-top: 1rem;
+}
+.ant-empty-img-simple-ellipse {
+  fill: #376F91;
+}
+
+.ant-empty-img-simple-path {
+  fill:#4da8da;
+}
+
+.ant-empty-img-simple-g {
+  stroke: #4da8da;
+}
+
+svg {
   color: #4da8da;
 }
 
@@ -120,15 +142,12 @@ section {
     font-size: small;
   }
 
-  #sat-logo {
+  .header-logo {
     width: 40px;
     height: 40px;
-    margin: 0.1rem;
   }
 
-  #earth-logo {
-    display: none;
-  }
+  #header-logo-right { display: none; }
 
   .ant-layout-header {
     justify-content: normal !important;
@@ -142,7 +161,7 @@ section {
   }
 
   .ant-form-item {
-    min-width: 70px;
+    min-width: 80px;
   }
 
   .ant-form-item-label {
