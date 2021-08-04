@@ -3,9 +3,9 @@
 ### :link: [Project Demo URL](https://track-satellites-for-x-minutes.herokuapp.com/)  
 ### Introduction  
   ***Track Satellites for &#119987; Minutes*** is a personal project to demonstrate the knowledge and skills to design the layout and component interface and data flow, 
-  and implement the API calls with [the Node.js back-end server](https://github.com/zacktcheng/node-js-server-for-n2yo) to uilitze the data by calling N2YO APIs, and 
+  and implement the API calls with [the Node.js back-end server](https://github.com/zacktcheng/node-js-server-for-n2yo) to utilize the data by calling N2YO APIs, and 
   finally provides end users visualized tracking data of selected satellites as a playable animation. The UI design for this project is built on top of Ant Design UI 
-  components with my prsonal color scheme and layout customization.  
+  components with my prefered color scheme and layout customization.  
 
 ### Overview
 Please checkout the flow chart *(Coming soon)*.
