@@ -17,8 +17,8 @@ const WorldMap = ({
   onTracking,
   observerInfo
 }) => {
-  const [duration, setDuration] = useState(1);
-  const [progressPercentage, setProgressPercentage] = useState(0);
+  const [minutes, setDuration] = useState(10);
+  const [progressPercentage, setProgressPercentage] = useState(10);
   const [progressText, setProgressText] = useState(progressStatus.Idle);
   const timerIdContainer = useRef(undefined);
   const [markersInfo, setMarkersInfo] = useState([]);
@@ -39,7 +39,7 @@ const WorldMap = ({
 
     return selectedSatellites.map((sat) => {
       const id = sat.satid;
-      return fetch(`${NODE_JS_FOR_N2YO_URL}/n2yo?api=positions&id=${id}&lat=${latitude}&lon=${longitude}&alt=${altitude}&dur=${60 * duration}&apikey=${process.env.REACT_APP_NY20_API_KEY}`)
+      return fetch(`${NODE_JS_FOR_N2YO_URL}/n2yo?api=positions&id=${id}&lat=${latitude}&lon=${longitude}&alt=${altitude}&dur=${60 * (minutes)}&apikey=${process.env.REACT_APP_NY20_API_KEY}`)
         .then(response => response.json());
     })
   }
@@ -93,12 +93,16 @@ const WorldMap = ({
       <Row>
         <Col flex="auto">
           <Slider 
-            min={10}
+            min={0}
             max={60}
             step={5}
-            marks={{ 10: '10', 20: '20', 30: '30', 40: '40', 50: '50', 60: '60' }}
-            defaultValue={20}
-            onChange={(value) => setDuration(value)}
+            marks={{ 0: '0', 10: '10', 20: '20', 30: '30', 40: '40', 50: '50', 60: '60' }}
+            defaultValue={10}
+            onChange={(value) => {
+              const duration = value > 0 ? (value + 2) : 0;
+              // Add 2 buffer minutes since the position api json data gets truncated by default.
+              setDuration(duration)
+            }}
             disabled={disabled}
           />
         </Col>
