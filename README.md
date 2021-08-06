@@ -1,6 +1,6 @@
 ## Track Satellites in &#119987; Minutes  
 *A satellite tracking visualization web app.*  
-### :link: [Project Demo URL](https://track-satellites-for-x-minutes.herokuapp.com/)  
+### :link: [Project Demo URL](https://track-satellites-in-x-minutes.herokuapp.com/)  
 ### Introduction  
   ***Track Satellites in &#119987; Minutes*** is a personal project to demonstrate the knowledge and skills to design the layout and component interface and data flow, 
   and implement the API calls with [the Node.js back-end server](https://github.com/zacktcheng/node-js-server-for-n2yo) to utilize the data by calling N2YO APIs, and 
