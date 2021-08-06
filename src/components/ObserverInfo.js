@@ -15,7 +15,7 @@ const ObserverInfo = (props) => {
       <hr/>
       <Form
         initialValues={{ 
-          latitude: "0", longitude: "0", altitude: "0", radius: "45", category: "52"
+          latitude: "0", longitude: "0", altitude: "0", radius: "67.5", category: "52"
         }}
         size="small"
         onFinish={onFormFinish}
@@ -40,18 +40,24 @@ const ObserverInfo = (props) => {
             <InputNumber size="small" min={-413} max={8850} disabled={props.disabled} />
           </Form.Item>
           <Form.Item
-            label="Range(&#952;)"
+            label="Radius"
             name="radius"
           >
-            <InputNumber size="small" min={45} max={90} disabled={props.disabled} />
+            <Select
+              style={{ width: 90 }}
+              size="small"
+            >
+              <Option value="45">Small</Option>
+              <Option value="67.5">Medium</Option>
+              <Option value="90">Large</Option>
+            </Select>
           </Form.Item>
           <Form.Item
             label="Category"
             name="category"
           >
             <Select 
-              style={{ width: 200 }}
-              defaultValue="2"
+              style={{ width: 180 }}
               size="small"
             >
               <Option value="52">Starlink</Option>

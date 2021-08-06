@@ -115,6 +115,22 @@ body {
   stroke: #4da8da;
 }
 
+.ant-slider-rail {
+  background: #376F91;
+}
+
+.ant-slider-track {
+  background: #4da8da;
+}
+
+.ant-slider-handle {
+  background: #eefbfb;
+}
+
+.ant-slider-mark-text {
+  color: #4da8da;
+}
+
 svg {
   color: #4da8da;
 }
@@ -161,7 +177,7 @@ section {
   }
 
   .ant-form-item {
-    min-width: 80px;
+    margin-right: 2rem;
   }
 
   .ant-form-item-label {

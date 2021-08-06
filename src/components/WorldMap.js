@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Geographies, Geography, Graticule, Sphere, ComposableMap, Marker } from "react-simple-maps";
-import { Button, InputNumber, Progress } from "antd";
+import { Button, Row, Col, Slider } from "antd";
 import { NODE_JS_FOR_N2YO_URL } from "../constants";
 
 const progressStatus = {
@@ -60,7 +60,6 @@ const WorldMap = ({
     
     onTracking(true);
     setCurrentTimestamp(new Date(data[0].positions[index].timestamp * 1000).toString());
-    setProgressPercentage((index / end) * 100);
     updateMarker(data, index);
     timerIdContainer.current = setInterval(() => {
       index += 60;
@@ -83,7 +82,7 @@ const WorldMap = ({
   const trackOnClick = () => {
     setProgressText(progressStatus.Tracking);
     setProgressPercentage(0);
-
+    
     Promise.all(fetchPositions()).then((data) => {
       startTracking(data);
     }).catch(() => { /*TO DO: add some fallback UI handler here*/ });
@@ -91,47 +90,44 @@ const WorldMap = ({
 
   return (
     <section>
-      <div className="trackInfo">
+      <Row>
+        <Col flex="auto">
+          <Slider 
+            min={10}
+            max={60}
+            step={5}
+            marks={{ 10: '10', 20: '20', 30: '30', 40: '40', 50: '50', 60: '60' }}
+            defaultValue={20}
+            onChange={(value) => setDuration(value)}
+            disabled={disabled}
+          />
+        </Col>
+        <Col flex="50px">
+          <p className="tracker-text">(min)</p>
+        </Col>
+      </Row>
+      <div className="tracker-btn">
         <Button 
           type="primary"
           onClick={trackOnClick}
           disabled={selectedSatellites.length === 0 || disabled}
           shape="round"
+          style={{ margin: "5px 0", marginRight: '10px' }}
         >
           Track selected satellites
         </Button>
-        <span className="track-text">for</span>
-        <InputNumber 
-          min={1}
-          max={60}
-          defaultValue={1}
-          onChange={(value) => setDuration(value)}
-          disabled={disabled}
-          size="small"
-        />
-        <span className="track-text">minutes</span>
-        <Progress 
-          style={{ width: "50%", marginRight: 10 }}
-          percent={progressPercentage} 
-          format={() => progressText}
-          strokeColor={{
-            '0%': '#4da8da',
-            '100%': '#4da8da'
-          }} 
-        />
-        <br/>
         {disabled &&
-          <Button 
-            type="primary"
-            onClick={abortOnClick}
-            shape="round"
-            style={{ margin: "10px 0"}}
-          >
-            Abort
-          </Button>
+        <Button 
+          type="primary"
+          onClick={abortOnClick}
+          shape="round"
+          style={{ margin: "5px 0", marginRight: '10px' }}
+        >
+          Abort
+        </Button>
         }
+        <span className="time-stamp">{currentTimestamp}</span>
       </div>
-      <p className="time-stamp">{currentTimestamp}</p>
       <ComposableMap 
         projectionConfig={{
           scale: 130,
@@ -162,7 +158,7 @@ const WorldMap = ({
               <rect x="-10" y="-.75" width="20" height="1.5" fill="#eefbfb"/>
               <rect x="-.75" y="-10" width="1.5" height="20" fill="#eefbfb"/>
               <circle r="3" fill="#eefbfb"/>
-              <circle r="6" stroke-width="1.5" fill="transparent" stroke="#eefbfb"/>
+              <circle r="6" strokeWidth="1.5" fill="transparent" stroke="#eefbfb"/>
               <text x="15" y="3" fill="#eefbfb" style={{ fontSize: "0.5rem", fontWeight: "bold", letterSpacing: "0.1rem"}}>{mark.name}</text>
             </Marker>
           )
